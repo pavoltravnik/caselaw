@@ -66,24 +66,25 @@ def parse_decisions(year,month,day):
 def get_content(link):
 	try:
 		matchObj = re.match( r'\/Judikatura\/judikatura_ns\.nsf\/WebSearch\/(.*?)\?openDocument', link, re.M|re.I)
-		if matchObj and str(matchObj.group(1)) not in saved_documents:
+		if matchObj:
 			print(str(matchObj.group(1)))
-			count = 0
-			while (count < 10):
-				count = count + 1
-				try:
-					q = requests.get("http://nsoud.cz"+link,allow_redirects=True)
-				except Exception as e:
-					print("{} - {}".format(matchObj, e))
-				if q.status_code == 200:
-					break
-				else:
-					time.sleep(5)
-			root = etree.HTML(q.text)
-			a = root.xpath('//div[@id="content"]')[0]
-			content = tostring(a, method='html', encoding="UTF-8").decode("utf-8")
-			with open("ns/documents/"+str(matchObj.group(1)+".html"), "a") as f:
-				f.write(content)
+			if str(matchObj.group(1)) not in saved_documents:
+				count = 0
+				while (count < 10):
+					count = count + 1
+					try:
+						q = requests.get("http://nsoud.cz"+link,allow_redirects=True)
+					except Exception as e:
+						print("{} - {}".format(matchObj, e))
+					if q.status_code == 200:
+						break
+					else:
+						time.sleep(5)
+				root = etree.HTML(q.text)
+				a = root.xpath('//div[@id="content"]')[0]
+				content = tostring(a, method='html', encoding="UTF-8").decode("utf-8")
+				with open("ns/documents/"+str(matchObj.group(1)+".html"), "a") as f:
+					f.write(content)
 		else:
 			raise Exception('Parsing weblink error!')
 	except Exception as e:
