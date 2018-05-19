@@ -43,7 +43,7 @@ def parse_decisions(year,month,day):
 			r = requests.get(address,allow_redirects=True)
 		except Exception as e:
 			print("Links gathering - {}".format(e))
-		if r.status == 200:
+		if r.status_code == 200:
 			break
 		else:
 			time.sleep(5)
@@ -74,7 +74,7 @@ def get_content(link):
 					q = requests.get("http://nsoud.cz"+link,allow_redirects=True)
 				except Exception as e:
 					print("{} - {}".format(matchObj, e))
-				if q.status == 200:
+				if q.status_code == 200:
 					break
 				else:
 					time.sleep(5)
