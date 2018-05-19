@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # requirements: "pip install lxml multiprocessing requests"
-# usage: "python3 links.py --sday 03 --smonth 01 --syear 2018 --eday 03 --emonth 01 --eyear 2018"
+# usage: "cd caselaw/ns ; python3 links.py --sday 03 --smonth 01 --syear 2018 --eday 03 --emonth 01 --eyear 2018"
 
 import re
 import requests
@@ -32,7 +32,7 @@ r = requests.get(address,allow_redirects=True)
 root = lxml.html.fromstring(r.text)
 links = root.xpath("//a/@href[starts-with(.,'/Judikatura/judikatura_ns.nsf/WebSearch')]")
 
-print("Found {} links. \n".format(len(links)))
+print("Found {} links.".format(len(links)))
 
 if len(links) > 990:
 	raise Exception('Too many links in this period. Try to find another time period.')
@@ -65,4 +65,4 @@ pool_outputs = pool.map(get_content,links)
 pool.close()
 pool.join()
 
-print(" Saved {} documents. \n".format(len(pool_outputs)))
+print("Saved {} documents.".format(len(pool_outputs)))
