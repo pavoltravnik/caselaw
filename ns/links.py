@@ -66,4 +66,4 @@ def get_content(link):
 if __name__ == '__main__':
     # service.py executed as script
     # do something
-    parse_decisions(args.year, args.month)
+    parse_month(args.year, args.month)
