@@ -42,8 +42,8 @@ def parse_decisions(year,month,day):
 		try:
 			r = requests.get(address,allow_redirects=True)
 		except Exception as e:
-			print("{} - {}".format(matchObj, e))
-		if q.status == 200:
+			print("Links gathering - {}".format(e))
+		if r.status == 200:
 			break
 		else:
 			time.sleep(5)
