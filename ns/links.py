@@ -66,8 +66,8 @@ def parse_decisions(year,month,day):
 def get_content(link):
 	try:
 		matchObj = re.match( r'\/Judikatura\/judikatura_ns\.nsf\/WebSearch\/(.*?)\?openDocument', link, re.M|re.I)
-		if matchObj and str(matchObj(1)) not in saved_documents:
-			print(str(matchObj(1)))
+		if matchObj and str(matchObj(0)) not in saved_documents:
+			print(str(matchObj(0)))
 			count = 0
 			while (count < 10):
 				count = count + 1
