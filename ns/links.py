@@ -67,7 +67,6 @@ def get_content(link):
 	try:
 		matchObj = re.match( r'\/Judikatura\/judikatura_ns\.nsf\/WebSearch\/(.*?)\?openDocument', link, re.M|re.I)
 		if matchObj:
-			print(str(matchObj.group(1)))
 			if str(matchObj.group(1)) not in saved_documents:
 				count = 0
 				while (count < 10):
