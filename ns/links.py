@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # requirements: "pip install lxml multiprocessing requests"
-# usage: "cd caselaw/ns ; python3 links.py --sday 03 --smonth 01 --syear 2018 --eday 03 --emonth 01 --eyear 2018"
+# usage: "python3 ns/links.py --month 1 --year 2018"
 
 import re
 import requests
