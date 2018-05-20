@@ -51,7 +51,7 @@ def parse_decisions(year,month,day):
 	root = lxml.html.fromstring(r.text)
 	links = root.xpath("//a/@href[starts-with(.,'/Judikatura/judikatura_ns.nsf/WebSearch')]")
 	if len(links) > 990:
-		raise Exception('Too many links in this period ({}). {}-{}-{} {}'.format(len(links),day,month,year, address))
+		raise Exception('Too many links in this period ({}). {}-{}-{}'.format(len(links),day,month,year))
 
 	# Write down links
 	for link in links:
@@ -62,7 +62,7 @@ def parse_decisions(year,month,day):
 	pool_outputs = pool.map(get_content,links)
 	pool.close()
 	pool.join()
-	print("{}\t{}\t{}-{}-{}".format(len(links),len(pool_outputs),day,month,year))
+	print("{}\t{}\t{}-{}-{}\t{}".format(len(links),len(pool_outputs),day,month,year, address))
 
 def get_content(link):
 	try:
