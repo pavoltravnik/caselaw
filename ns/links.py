@@ -62,7 +62,7 @@ def parse_decisions(year,month,day):
 	pool_outputs = pool.map(get_content,links)
 	pool.close()
 	pool.join()
-	print("{}\t{}\t{}-{}-{}\t{}".format(len(links),len(pool_outputs),day,month,year, address))
+	print("{}\t{}\t{}-{}-{}".format(len(links),len(pool_outputs),day,month,year))
 
 def get_content(link):
 	try:
