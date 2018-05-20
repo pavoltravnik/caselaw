@@ -51,7 +51,7 @@ def parse_decisions(year,month,day):
 	root = lxml.html.fromstring(r.text)
 	links = root.xpath("//a/@href[starts-with(.,'/Judikatura/judikatura_ns.nsf/WebSearch')]")
 	if len(links) > 990:
-		raise Exception('Too many links in this period ({}). {}-{}-{} {}'.format(len(links),day,month,year address))
+		raise Exception('Too many links in this period ({}). {}-{}-{} {}'.format(len(links),day,month,year, address))
 
 	# Write down links
 	for link in links:
