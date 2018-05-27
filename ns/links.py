@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # requirements: "pip install lxml multiprocessing requests"
-# usage: "python3 ns/links.py --month 1 --year 2018 --datum" 
+# usage: "python3 ns/links.py --month 1 --year 2018 --datum pridani" 
 
 import re
 import requests
@@ -18,7 +18,7 @@ import time
 parser = argparse.ArgumentParser()
 parser.add_argument("--month", help="start month", type=int)
 parser.add_argument("--year", help="start year", type=int)
-parser.add_argument("--datum", help="datum", choices=["predani", "rozhodnuti"])
+parser.add_argument("--datum", help="datum", choices=["pridani", "rozhodnuti"])
 args = parser.parse_args()
 
 path="ns/documents"
@@ -36,9 +36,9 @@ def parse_month(parse_year,parse_month):
 
 
 def parse_decisions(year,month,day):
-	if args.year == "predani":
+	if args.datum == "pridani":
 		address = "http://nsoud.cz/Judikatura/judikatura_ns.nsf/$$WebSearch1?SearchView&Query=%5Bdatum_predani_na_web%5D%3E%3D{0}%2F{1}%2F{2}%20AND%20%5Bdatum_predani_na_web%5D%3C%3D{3}%2F{4}%2F{5}&SearchOrder=2&SearchMax=0&Start=1&Count=1000&pohled=1".format(str(day),str(month),str(year),str(day),str(month),str(year))
-	elif args.year == "rozhodnuti":
+	elif args.datum == "rozhodnuti":
 		address = "http://nsoud.cz/Judikatura/judikatura_ns.nsf/$$WebSearch1?SearchView&Query=%5Bdatum_rozhodnuti%5D%3E%3D{0}%2F{1}%2F{2}%20AND%20%5Bdatum_rozhodnuti%5D%3C%3D{3}%2F{4}%2F{5}&SearchOrder=2&SearchMax=0&Start=1&Count=1000&pohled=1".format(str(day),str(month),str(year),str(day),str(month),str(year))
 	else:
 		raise Exception('Datum setting can be only "predani" and "rozhodnuti".')
