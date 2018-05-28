@@ -88,7 +88,7 @@ def get_content(link):
 				root = etree.HTML(q.text)
 				a = root.xpath('//div[@id="content"]')[0]
 				content = tostring(a, method='html', encoding="UTF-8").decode("utf-8")
-				with open("ns/documents/"+str(matchObj.group(1)+".html"), "a") as f:
+				with open("ns/documents/"+str(matchObj.group(1)+".html"), "w") as f:
 					f.write(content)
 		else:
 			raise Exception('Parsing weblink error!')
