@@ -6,7 +6,7 @@ from lxml.etree import tostring
 import os
 from os import listdir
 from os.path import isfile, join
-saved_documents = [f for f in listdir("ns/documents") if isfile(join("ns/documents", f))][:10000]
+saved_documents = [f for f in listdir("ns/documents") if isfile(join("ns/documents", f))]
 
 
 for doc in saved_documents:
